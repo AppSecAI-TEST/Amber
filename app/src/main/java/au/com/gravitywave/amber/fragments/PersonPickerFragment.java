@@ -47,7 +47,7 @@ public class PersonPickerFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param personId Parameter 1.
+     * @param personId  Parameter 1.
      * @param firstName Parameter 2.
      * @return A new instance of fragment PersonPickerFragment.
      */
