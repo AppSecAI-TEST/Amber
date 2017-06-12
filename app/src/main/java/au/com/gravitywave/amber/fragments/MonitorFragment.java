@@ -1,11 +1,10 @@
-package au.com.gravitywave.amber.Fragments;
+package au.com.gravitywave.amber.fragments;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -13,11 +12,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.text.StaticLayout;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -32,11 +32,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-
-import android.widget.EditText;
-import android.widget.TextView;
-
 
 import java.util.ArrayList;
 
@@ -53,33 +48,29 @@ import static android.app.Activity.RESULT_OK;
  * create an instance of this fragment.
  */
 public class MonitorFragment extends Fragment
-        implements OnMapReadyCallback {
-    private GoogleMap mMap;
-    MapView mMapView;
-    private View mRootView;
+        implements OnMapReadyCallback,
+        BlankFragment.OnFragmentInteractionListener
 
-//    ServerMockService serverMockService;
-//    boolean isBound = false;
-
-    TextView timeTextView;
-
-    TextView mFromEditText;
-    TextView mToEditText;
-
-    int FROM_PLACE_PICKER_REQUEST = 1 ;
-    int TO_PLACE_PICKER_REQUEST = 2 ;
-
-    ArrayList<Marker> mAllMarkers;
-
-    LocationListener locationListener;
-    LocationManager locationManager;
-    public static Criteria criteria;
-
+{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static Criteria criteria;
 
+//    ServerMockService serverMockService;
+//    boolean isBound = false;
+MapView mMapView;
+    TextView timeTextView;
+    TextView mFromEditText;
+    TextView mToEditText;
+    int FROM_PLACE_PICKER_REQUEST = 1 ;
+    int TO_PLACE_PICKER_REQUEST = 2 ;
+    ArrayList<Marker> mAllMarkers;
+    LocationListener locationListener;
+    LocationManager locationManager;
+    private GoogleMap mMap;
+    private View mRootView;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -120,6 +111,7 @@ public class MonitorFragment extends Fragment
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
+
 //        Intent i = new Intent(getContext(), ServerMockService.class);
 //        getActivity().bindService(i, serviceConnection, Context.BIND_AUTO_CREATE);
 
@@ -130,6 +122,7 @@ public class MonitorFragment extends Fragment
                              Bundle savedInstanceState) {
 
         mRootView = inflater.inflate(R.layout.fragment_monitor, container, false);
+
 
         handleFromClick(mRootView);
         handleToClick(mRootView);
@@ -209,6 +202,12 @@ public class MonitorFragment extends Fragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+        PersonListFragment personListFragment = new PersonListFragment();
+        fragmentTransaction.replace(R.id.bottom_fragment, personListFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
         mMapView = (MapView) view.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume();
@@ -237,19 +236,9 @@ public class MonitorFragment extends Fragment
         }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     @Override
@@ -346,6 +335,21 @@ public class MonitorFragment extends Fragment
 
             mMap.animateCamera(cu);
         }
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 
 

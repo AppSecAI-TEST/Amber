@@ -1,4 +1,4 @@
-package au.com.gravitywave.amber.Fragments;
+package au.com.gravitywave.amber.fragments;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;

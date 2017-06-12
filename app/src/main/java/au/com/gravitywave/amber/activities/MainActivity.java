@@ -1,12 +1,12 @@
-package au.com.gravitywave.amber.Activities;
+package au.com.gravitywave.amber.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,25 +16,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-//import android.os.IBinder;
-//import android.content.Context;
-//import android.content.Intent;
-//import android.content.ComponentName;
-//import android.content.ServiceConnection;
-//import android.widget.TextView;
-
-
-import au.com.gravitywave.amber.Fragments.LocationPickerFragment;
-import au.com.gravitywave.amber.Fragments.MonitorFragment;
-import au.com.gravitywave.amber.Fragments.NewUserFragment;
 import au.com.gravitywave.amber.R;
+import au.com.gravitywave.amber.fragments.LocationPickerFragment;
+import au.com.gravitywave.amber.fragments.MonitorFragment;
+import au.com.gravitywave.amber.fragments.NewUserFragment;
+import au.com.gravitywave.amber.fragments.PersonListFragment;
+import au.com.gravitywave.amber.fragments.PersonPickerFragment;
+import au.com.gravitywave.amber.fragments.entities.PersonListContent;
+
+//import android.os.IBinder;
+//import android.firstName.Context;
+//import android.firstName.Intent;
+//import android.firstName.ComponentName;
+//import android.firstName.ServiceConnection;
+//import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements
         NavigationView.OnNavigationItemSelectedListener,
         LocationPickerFragment.OnFragmentInteractionListener,
         MonitorFragment.OnFragmentInteractionListener,
-        NewUserFragment.OnFragmentInteractionListener
+        NewUserFragment.OnFragmentInteractionListener,
+        PersonListFragment.OnListFragmentInteractionListener,
+        PersonPickerFragment.OnFragmentInteractionListener
+//        BlankFragment.OnFragmentInteractionListener
 
 {
     private static final int  MY_PERMISSIONS_REQUEST_READ_CONTACTS =1;
@@ -218,6 +223,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(PersonListContent.Person item) {
 
     }
 

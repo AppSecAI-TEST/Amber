@@ -1,4 +1,4 @@
-package au.com.gravitywave.amber.Fragments;
+package au.com.gravitywave.amber.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,32 +7,39 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+
+import com.google.android.gms.plus.PlusOneButton;
 
 import au.com.gravitywave.amber.R;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * A fragment with a Google +1 button.
  * Activities that contain this fragment must implement the
- * {@link LocationPickerFragment.OnFragmentInteractionListener} interface
+ * {@link PersonPickerFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link LocationPickerFragment#newInstance} factory method to
+ * Use the {@link PersonPickerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LocationPickerFragment extends Fragment {
+public class PersonPickerFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_INITIAL_LOCATION = "initial_location";
-    private static final String ARG_LOCATION_PROMPT = "location_prompt";
+    private static final String ARG_PERSON_ID = "person_id";
+    private static final String ARG_FIRST_NAME = "firstName";
+    private static final String ARG_LAST_NAME = "last_name";
+    // The request code must be 0 or greater.
+    private static final int PICK_PERSONE_REQUEST_CODE = 0;
+    // The URL to +1.  Must be a valid URL.
+    private final String PLUS_ONE_URL = "http://developer.android.com";
+    // TODO: Rename and change types of parameters
+    private String mPersonId;
+    private String mFirstName;
+    private String mLasttName;
 
-    private String mInitialLocation;
-    private String mLocationPrompt;
-    private EditText mLocationText;
+    private PlusOneButton mPlusOneButton;
 
     private OnFragmentInteractionListener mListener;
 
-    public LocationPickerFragment() {
+    public PersonPickerFragment() {
         // Required empty public constructor
     }
 
@@ -40,16 +47,17 @@ public class LocationPickerFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param initialLocation Parameter 1.
-     * @param locationPrompt Parameter 2.
-     * @return A new instance of fragment LocationPickerFragment.
+     * @param personId Parameter 1.
+     * @param firstName Parameter 2.
+     * @return A new instance of fragment PersonPickerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LocationPickerFragment newInstance(String initialLocation, String locationPrompt) {
-        LocationPickerFragment fragment = new LocationPickerFragment();
+    public static PersonPickerFragment newInstance(String personId, String firstName, String lastName) {
+        PersonPickerFragment fragment = new PersonPickerFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_INITIAL_LOCATION, initialLocation);
-        args.putString(ARG_LOCATION_PROMPT, locationPrompt);
+        args.putString(ARG_PERSON_ID, personId);
+        args.putString(ARG_FIRST_NAME, firstName);
+        args.putString(ARG_LAST_NAME, lastName);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,8 +66,9 @@ public class LocationPickerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mInitialLocation = getArguments().getString(ARG_INITIAL_LOCATION);
-            mLocationPrompt = getArguments().getString(ARG_LOCATION_PROMPT);
+            mPersonId = getArguments().getString(ARG_PERSON_ID);
+            mFirstName = getArguments().getString(ARG_FIRST_NAME);
+            mLasttName = getArguments().getString(ARG_LAST_NAME);
         }
     }
 
@@ -67,13 +76,20 @@ public class LocationPickerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_location_picker, container, false);
+        View view = inflater.inflate(R.layout.fragment_person_picker, container, false);
 
-        mLocationText = (EditText) v.findViewById(R.id.location_text);
+        //Find the +1 button
+//        mPlusOneButton = (PlusOneButton) view.findViewById(R.id.plus_one_button);
 
-        mLocationText.setHint(mLocationPrompt);
+        return view;
+    }
 
-        return v;
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Refresh the state of the +1 button each time the activity receives focus.
+        mPlusOneButton.initialize(PLUS_ONE_URL, PICK_PERSONE_REQUEST_CODE);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -114,4 +130,5 @@ public class LocationPickerFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

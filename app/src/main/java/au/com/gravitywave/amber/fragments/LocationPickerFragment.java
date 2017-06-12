@@ -1,4 +1,4 @@
-package au.com.gravitywave.amber.Fragments;
+package au.com.gravitywave.amber.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,30 +7,32 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import au.com.gravitywave.amber.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TripHistoryFragment.OnFragmentInteractionListener} interface
+ * {@link LocationPickerFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TripHistoryFragment#newInstance} factory method to
+ * Use the {@link LocationPickerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TripHistoryFragment extends Fragment {
+public class LocationPickerFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_INITIAL_LOCATION = "initial_location";
+    private static final String ARG_LOCATION_PROMPT = "location_prompt";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mInitialLocation;
+    private String mLocationPrompt;
+    private EditText mLocationText;
 
     private OnFragmentInteractionListener mListener;
 
-    public TripHistoryFragment() {
+    public LocationPickerFragment() {
         // Required empty public constructor
     }
 
@@ -38,16 +40,16 @@ public class TripHistoryFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TripHistoryFragment.
+     * @param initialLocation Parameter 1.
+     * @param locationPrompt Parameter 2.
+     * @return A new instance of fragment LocationPickerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TripHistoryFragment newInstance(String param1, String param2) {
-        TripHistoryFragment fragment = new TripHistoryFragment();
+    public static LocationPickerFragment newInstance(String initialLocation, String locationPrompt) {
+        LocationPickerFragment fragment = new LocationPickerFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_INITIAL_LOCATION, initialLocation);
+        args.putString(ARG_LOCATION_PROMPT, locationPrompt);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,8 +58,8 @@ public class TripHistoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mInitialLocation = getArguments().getString(ARG_INITIAL_LOCATION);
+            mLocationPrompt = getArguments().getString(ARG_LOCATION_PROMPT);
         }
     }
 
@@ -65,7 +67,13 @@ public class TripHistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trip_history, container, false);
+        View v = inflater.inflate(R.layout.fragment_location_picker, container, false);
+
+        mLocationText = (EditText) v.findViewById(R.id.location_text);
+
+        mLocationText.setHint(mLocationPrompt);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

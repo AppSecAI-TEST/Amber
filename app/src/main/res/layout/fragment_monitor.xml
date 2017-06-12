@@ -7,31 +7,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryMonitor"
-        android:gravity="center"
+        android:gravity="fill_vertical"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
             android:layout_weight="1"
+            android:gravity="left"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/from_location"
-                android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/address_font_size"
-                android:hint="@string/from_prompt" />
+                android:focusable="false"
+                android:hint="@string/from_prompt"
+                android:textSize="@dimen/address_font_size" />
 
             <EditText
                 android:id="@+id/to_location"
-                android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/address_font_size"
-                android:hint="@string/to_prompt" />
+                android:focusable="false"
+                android:hint="@string/to_prompt"
+                android:textSize="@dimen/address_font_size" />
 
         </LinearLayout>
 
@@ -49,5 +49,9 @@
         android:layout_height="250dp"
         android:layout_below="@+id/currentTrip" />
 
+    <FrameLayout
+        android:id="@+id/bottom_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></FrameLayout>
 
 </LinearLayout>
