@@ -13,9 +13,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -60,6 +63,10 @@ public class MonitorFragment extends Fragment
 
 //    ServerMockService serverMockService;
 //    boolean isBound = false;
+Button drawerToggleButton;
+
+    DrawerLayout drawer;
+
 MapView mMapView;
     TextView timeTextView;
     TextView mFromEditText;
@@ -123,6 +130,16 @@ MapView mMapView;
 
         mRootView = inflater.inflate(R.layout.fragment_monitor, container, false);
 
+        drawerToggleButton = (Button) mRootView.findViewById(R.id.buttonToggleDrawer);
+        drawer = (DrawerLayout) container.getRootView().findViewById(R.id.drawer_layout);
+
+
+        drawerToggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.LEFT);
+            }
+        });
 
         handleFromClick(mRootView);
         handleToClick(mRootView);
@@ -139,6 +156,7 @@ MapView mMapView;
             @Override
             public void onClick(View v) {
                 PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
                 Intent intent = null;
                 try {
                     intent = builder.build(getActivity());
