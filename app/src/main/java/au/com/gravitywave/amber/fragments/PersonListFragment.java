@@ -66,43 +66,47 @@ public class PersonListFragment extends Fragment {
         people.add(new PersonListContent.Person("3", "Gussy", "Kingsbury"));
         people.add(new PersonListContent.Person("4", "Maury", "Sheavills"));
         people.add(new PersonListContent.Person("5", "Caritta", "Shoveller"));
-        people.add(new PersonListContent.Person("6", "Alissa", "Felstead"));
-        people.add(new PersonListContent.Person("7", "Adrian", "Omand"));
-        people.add(new PersonListContent.Person("8", "Jedd", "Birrell"));
-        people.add(new PersonListContent.Person("9", "Hurleigh", "Crown"));
-        people.add(new PersonListContent.Person("10", "Buckie", "Kerrigan"));
-        people.add(new PersonListContent.Person("11", "Shurlocke", "Gorick"));
-        people.add(new PersonListContent.Person("12", "Adriaens", "Tombs"));
-        people.add(new PersonListContent.Person("13", "Millisent", "McFeat"));
-        people.add(new PersonListContent.Person("14", "Cecil", "Tirrell"));
-        people.add(new PersonListContent.Person("15", "Tildi", "Kerswill"));
-        people.add(new PersonListContent.Person("16", "Edita", "Piser"));
-        people.add(new PersonListContent.Person("17", "Ezekiel", "Erbe"));
-        people.add(new PersonListContent.Person("18", "Christoph", "Domenico"));
-        people.add(new PersonListContent.Person("19", "Elysia", "Sherland"));
-        people.add(new PersonListContent.Person("20", "Rozalie", "Ohms"));
-        people.add(new PersonListContent.Person("21", "Antony", "McAughtrie"));
-        people.add(new PersonListContent.Person("22", "Gabrielle", "Passey"));
-        people.add(new PersonListContent.Person("23", "Xenia", "Laxton"));
-        people.add(new PersonListContent.Person("24", "Abbot", "Olohan"));
-        people.add(new PersonListContent.Person("25", "Karleen", "Letty"));
-        people.add(new PersonListContent.Person("26", "Ivor", "Hasluck"));
-        people.add(new PersonListContent.Person("27", "Cornie", "Punchard"));
-        people.add(new PersonListContent.Person("28", "Andriana", "Bryenton"));
-        people.add(new PersonListContent.Person("29", "Othilia", "Dabes"));
-        people.add(new PersonListContent.Person("30", "Riki", "Harden"));
-        people.add(new PersonListContent.Person("31", "Tripp", "Dumbare"));
-        people.add(new PersonListContent.Person("32", "Rebekah", "Ivanyushin"));
-        people.add(new PersonListContent.Person("33", "Lettie", "Sutlieff"));
-        people.add(new PersonListContent.Person("34", "Giselle", "Freeborne"));
-        people.add(new PersonListContent.Person("35", "Eddy", "Cottier"));
-        people.add(new PersonListContent.Person("36", "Christian", "Williment"));
-        people.add(new PersonListContent.Person("37", "Krishnah", "Olyet"));
-        people.add(new PersonListContent.Person("38", "Janenna", "Swine"));
-        people.add(new PersonListContent.Person("39", "Paton", "Fagence"));
-        people.add(new PersonListContent.Person("40", "Hartwell", "Matthewson"));
+//        people.add(new PersonListContent.Person("6", "Alissa", "Felstead"));
+//        people.add(new PersonListContent.Person("7", "Adrian", "Omand"));
+//        people.add(new PersonListContent.Person("8", "Jedd", "Birrell"));
+//        people.add(new PersonListContent.Person("9", "Hurleigh", "Crown"));
+//        people.add(new PersonListContent.Person("10", "Buckie", "Kerrigan"));
+//        people.add(new PersonListContent.Person("11", "Shurlocke", "Gorick"));
+//        people.add(new PersonListContent.Person("12", "Adriaens", "Tombs"));
+//        people.add(new PersonListContent.Person("13", "Millisent", "McFeat"));
+//        people.add(new PersonListContent.Person("14", "Cecil", "Tirrell"));
+//        people.add(new PersonListContent.Person("15", "Tildi", "Kerswill"));
+//        people.add(new PersonListContent.Person("16", "Edita", "Piser"));
+//        people.add(new PersonListContent.Person("17", "Ezekiel", "Erbe"));
+//        people.add(new PersonListContent.Person("18", "Christoph", "Domenico"));
+//        people.add(new PersonListContent.Person("19", "Elysia", "Sherland"));
+//        people.add(new PersonListContent.Person("20", "Rozalie", "Ohms"));
+//        people.add(new PersonListContent.Person("21", "Antony", "McAughtrie"));
+//        people.add(new PersonListContent.Person("22", "Gabrielle", "Passey"));
+//        people.add(new PersonListContent.Person("23", "Xenia", "Laxton"));
+//        people.add(new PersonListContent.Person("24", "Abbot", "Olohan"));
+//        people.add(new PersonListContent.Person("25", "Karleen", "Letty"));
+//        people.add(new PersonListContent.Person("26", "Ivor", "Hasluck"));
+//        people.add(new PersonListContent.Person("27", "Cornie", "Punchard"));
+//        people.add(new PersonListContent.Person("28", "Andriana", "Bryenton"));
+//        people.add(new PersonListContent.Person("29", "Othilia", "Dabes"));
+//        people.add(new PersonListContent.Person("30", "Riki", "Harden"));
+//        people.add(new PersonListContent.Person("31", "Tripp", "Dumbare"));
+//        people.add(new PersonListContent.Person("32", "Rebekah", "Ivanyushin"));
+//        people.add(new PersonListContent.Person("33", "Lettie", "Sutlieff"));
+//        people.add(new PersonListContent.Person("34", "Giselle", "Freeborne"));
+//        people.add(new PersonListContent.Person("35", "Eddy", "Cottier"));
+//        people.add(new PersonListContent.Person("36", "Christian", "Williment"));
+//        people.add(new PersonListContent.Person("37", "Krishnah", "Olyet"));
+//        people.add(new PersonListContent.Person("38", "Janenna", "Swine"));
+//        people.add(new PersonListContent.Person("39", "Paton", "Fagence"));
+//        people.add(new PersonListContent.Person("40", "Hartwell", "Matthewson"));
 
 
+//        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
+//
+//        View bottonSheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_location_picker, null);
+//        bottomSheetDialog.show();
     }
 
     @Override
@@ -110,12 +114,13 @@ public class PersonListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_person_list, container, false);
 
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.person_list);
         // Set the adapter
-        if (view instanceof RecyclerView) {
+        if (recyclerView instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
+//                recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }

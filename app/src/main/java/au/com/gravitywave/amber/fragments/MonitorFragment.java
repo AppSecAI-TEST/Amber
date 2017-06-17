@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -39,6 +38,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
 import au.com.gravitywave.amber.R;
+import au.com.gravitywave.amber.fragments.entities.PersonListContent;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -52,7 +52,7 @@ import static android.app.Activity.RESULT_OK;
  */
 public class MonitorFragment extends Fragment
         implements OnMapReadyCallback,
-        BlankFragment.OnFragmentInteractionListener
+        PersonListFragment.OnListFragmentInteractionListener
 
 {
     // TODO: Rename parameter arguments, choose names that match
@@ -83,6 +83,7 @@ MapView mMapView;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
 
     public MonitorFragment() {
         // Required empty public constructor
@@ -122,6 +123,7 @@ MapView mMapView;
 //        Intent i = new Intent(getContext(), ServerMockService.class);
 //        getActivity().bindService(i, serviceConnection, Context.BIND_AUTO_CREATE);
 
+
     }
 
     @Override
@@ -143,6 +145,7 @@ MapView mMapView;
 
         handleFromClick(mRootView);
         handleToClick(mRootView);
+
 
         return mRootView;
     }
@@ -220,11 +223,11 @@ MapView mMapView;
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-        PersonListFragment personListFragment = new PersonListFragment();
-        fragmentTransaction.replace(R.id.bottom_fragment, personListFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+//        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+//        PersonListFragment personListFragment = new PersonListFragment();
+//        fragmentTransaction.replace(R.id.bottom_sheet, personListFragment);
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
 
         mMapView = (MapView) view.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
@@ -252,11 +255,6 @@ MapView mMapView;
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override
@@ -353,6 +351,11 @@ MapView mMapView;
 
             mMap.animateCamera(cu);
         }
+    }
+
+    @Override
+    public void onListFragmentInteraction(PersonListContent.Person item) {
+
     }
 
     /**

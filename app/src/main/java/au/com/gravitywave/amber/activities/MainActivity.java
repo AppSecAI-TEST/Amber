@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
@@ -15,8 +17,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import au.com.gravitywave.amber.R;
+import au.com.gravitywave.amber.fragments.BlankFragment;
 import au.com.gravitywave.amber.fragments.LocationPickerFragment;
 import au.com.gravitywave.amber.fragments.MonitorFragment;
 import au.com.gravitywave.amber.fragments.NewUserFragment;
@@ -38,15 +42,15 @@ public class MainActivity extends AppCompatActivity
         MonitorFragment.OnFragmentInteractionListener,
         NewUserFragment.OnFragmentInteractionListener,
         PersonListFragment.OnListFragmentInteractionListener,
-        PersonPickerFragment.OnFragmentInteractionListener
-//        BlankFragment.OnFragmentInteractionListener
+        PersonPickerFragment.OnFragmentInteractionListener,
+        BlankFragment.OnFragmentInteractionListener
 
 {
-    private static final int  MY_PERMISSIONS_REQUEST_READ_CONTACTS =1;
+    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     boolean havePermission = false;
-
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+    private BottomSheetBehavior bottomSheetBehavior;
 
 //    ServerMockService serverMockService;
 //    boolean isBound = false;
@@ -74,6 +78,50 @@ public class MainActivity extends AppCompatActivity
 
 //        Intent i = new Intent(this, ServerMockService.class);
 //        bindService(i, serviceConnection, Context.BIND_AUTO_CREATE);
+
+        setupBottomSheet();
+
+    }
+
+
+    private void setupBottomSheet() {
+
+        PersonListFragment fragment = new PersonListFragment();
+
+        View view = findViewById(R.id.bottom_sheet_content);
+
+        FragmentTransaction fragmentTransaction =
+                getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.bottom_sheet_content, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+
+        View bottomSheet = findViewById(R.id.bottom_sheet_container);
+
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        // set the peek height
+        bottomSheetBehavior.setPeekHeight(40);
+
+        // set hideable or not
+        bottomSheetBehavior.setHideable(false);
+
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED)
+                    bottomSheetBehavior.setPeekHeight(30);
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+
+
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
 
     private void requestPermissions() {
@@ -128,6 +176,7 @@ public class MainActivity extends AppCompatActivity
             // permissions this app might request
         }
     }
+
     private void showMyTripsFragment() {
         LocationPickerFragment fragment = new LocationPickerFragment();
 
