@@ -28,6 +28,7 @@
             android:layout_height="350dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:background="@color/cardview_dark_background"
             app:layoutManager="LinearLayoutManager"
             tools:context="au.com.gravitywave.amber.fragments.PersonListFragment"
             tools:listitem="@layout/fragment_person" />

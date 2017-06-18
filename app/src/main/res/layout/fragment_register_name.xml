@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:padding="@dimen/form_padding"
+    tools:context=".Registration.RegisterNameFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_name_details"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+    <EditText
+        android:id="@+id/first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/first_name_prompt"
+        android:inputType="textCapWords" />
+
+
+    <EditText
+        android:id="@+id/last_name"
+        style=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/last_name_prompt"
+        android:inputType="textCapWords" />
+
+</LinearLayout>

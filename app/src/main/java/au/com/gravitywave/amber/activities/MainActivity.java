@@ -1,6 +1,7 @@
 package au.com.gravitywave.amber.activities;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import au.com.gravitywave.amber.R;
+import au.com.gravitywave.amber.Registration.NewRegistrationActivity;
 import au.com.gravitywave.amber.fragments.BlankFragment;
 import au.com.gravitywave.amber.fragments.LocationPickerFragment;
 import au.com.gravitywave.amber.fragments.MonitorFragment;
@@ -188,6 +190,12 @@ public class MainActivity extends AppCompatActivity
 //        showTime();
     }
 
+    private void showRegisterNew() {
+
+        Intent intent = new Intent(this, NewRegistrationActivity.class);
+        startActivity(intent);
+    }
+
     private void showRegisterFragment() {
         NewUserFragment fragment = new NewUserFragment();
 
@@ -251,7 +259,7 @@ public class MainActivity extends AppCompatActivity
             showMyTripsFragment();
 
         } else if (id == R.id.nav_register) {
-            showRegisterFragment();
+            showRegisterNew();
 
         } else if (id == R.id.nav_manage) {
             showMonitorFragment();

@@ -15,9 +15,9 @@
     <string name="local_service_label">Event Service</string>
     <string name="remote_service_stopped">Remote Server has stopped</string>
     <string name="remote_service_connected">Event service connected</string>
-    <string name="first_name_prompt">enter your first name</string>
-    <string name="last_name_prompt">enter your last name</string>
-    <string name="address_prompt">Enter your full address</string>
+    <string name="first_name_prompt">first name</string>
+    <string name="last_name_prompt">last name</string>
+    <string name="address_prompt">click to select address</string>
     <string name="password_prompt">Password</string>
     <string name="re_enter_password_prompt">Re-enter password</string>
     <string name="from_prompt">From</string>
@@ -56,5 +56,12 @@
     <string name="scan_fingerprint">Scan your fingerprint</string>
     <string name="enter_credentials">Enter your credentials</string>
     <string name="or">or</string>
+    <string name="enter_name_details">Enter your name</string>
+    <string name="title_activity_register">Register</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_new_registration">Register as a user</string>
+    <string name="enter_address_details">Select your address</string>
+    <string name="enter_personal_details">Enter your personal details</string>
 
 </resources>
