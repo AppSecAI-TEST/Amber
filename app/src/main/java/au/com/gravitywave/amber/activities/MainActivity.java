@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -19,9 +20,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import au.com.gravitywave.amber.R;
-import au.com.gravitywave.amber.Registration.NewRegistrationActivity;
 import au.com.gravitywave.amber.fragments.BlankFragment;
 import au.com.gravitywave.amber.fragments.LocationPickerFragment;
 import au.com.gravitywave.amber.fragments.MonitorFragment;
@@ -29,6 +30,8 @@ import au.com.gravitywave.amber.fragments.NewUserFragment;
 import au.com.gravitywave.amber.fragments.PersonListFragment;
 import au.com.gravitywave.amber.fragments.PersonPickerFragment;
 import au.com.gravitywave.amber.fragments.entities.PersonListContent;
+import au.com.gravitywave.amber.registration.NewRegistrationActivity;
+import au.com.gravitywave.amber.walk.ShowResponderDialogFragment;
 
 //import android.os.IBinder;
 //import android.firstName.Context;
@@ -45,7 +48,8 @@ public class MainActivity extends AppCompatActivity
         NewUserFragment.OnFragmentInteractionListener,
         PersonListFragment.OnListFragmentInteractionListener,
         PersonPickerFragment.OnFragmentInteractionListener,
-        BlankFragment.OnFragmentInteractionListener
+        BlankFragment.OnFragmentInteractionListener,
+        ShowResponderDialogFragment.OnShowResponderDialogCloseListener
 
 {
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
@@ -85,6 +89,12 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void showResponderDialog(String responderName) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        ShowResponderDialogFragment dialgoFragment = new ShowResponderDialogFragment();
+        dialgoFragment.show(fragmentManager, "responder");
+
+    }
 
     private void setupBottomSheet() {
 
@@ -265,7 +275,7 @@ public class MainActivity extends AppCompatActivity
             showMonitorFragment();
 
         } else if (id == R.id.nav_share) {
-            showMonitorFragment();
+            showResponderDialog("George");
 
         } else if (id == R.id.nav_send) {
             showMonitorFragment();
@@ -285,6 +295,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(PersonListContent.Person item) {
+
+    }
+
+    @Override
+    public void onShowResponderMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
     }
 

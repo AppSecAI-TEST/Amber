@@ -29,7 +29,8 @@
                 android:hint="@string/address_prompt"
                 android:inputType="textMultiLine"
                 android:lines="8"
-                android:text="@string/address_prompt" />
+                android:text="@string/address_prompt"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
         </android.support.v7.widget.CardView>
 

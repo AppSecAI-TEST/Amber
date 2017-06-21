@@ -17,7 +17,17 @@
         style="@android:style/Widget.EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Birthdate" />
+        android:hint="Birthdate"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+    <Spinner
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/gender"
+        android:prompt="@string/gender_prompt">
+
+    </Spinner>
 
 
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:padding="@dimen/form_padding"
-    tools:context=".Registration.RegisterNameFragment">
+    tools:context=".registration.RegisterNameFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/first_name_prompt"
-        android:inputType="textCapWords" />
+        android:inputType="textCapWords"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
 
     <EditText
@@ -27,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/last_name_prompt"
-        android:inputType="textCapWords" />
+        android:inputType="textCapWords"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
 </LinearLayout>

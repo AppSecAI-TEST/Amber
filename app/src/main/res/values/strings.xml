@@ -64,4 +64,12 @@
     <string name="enter_address_details">Select your address</string>
     <string name="enter_personal_details">Enter your personal details</string>
 
+    <string name="gender_prompt">Gender</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>

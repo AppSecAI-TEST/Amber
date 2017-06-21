@@ -1,4 +1,4 @@
-package au.com.gravitywave.amber.Registration;
+package au.com.gravitywave.amber.registration;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -104,6 +104,13 @@ public class RegisterPersonalDetailsFragment extends Fragment {
                 mBirthDateTextView.setText(new Date(year, month, year).toString()); //// TODO: 2/06/2017 fix date
             }
         };
+
+
+//        Spinner genderSpinner = (Spinner)v.findViewById(R.id.gender);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.gender, R.layout.spinner_layout);
+//        adapter.setDropDownViewResource(R.layout.spinner_layout);
+//        genderSpinner.setAdapter(adapter);
+
 
         return v;
     }

@@ -1,4 +1,4 @@
-package au.com.gravitywave.amber.Registration;
+package au.com.gravitywave.amber.registration;
 
 import android.net.Uri;
 import android.os.Bundle;
