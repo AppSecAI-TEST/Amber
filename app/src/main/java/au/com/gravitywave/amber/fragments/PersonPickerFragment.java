@@ -79,7 +79,7 @@ public class PersonPickerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_person_picker, container, false);
 
         //Find the +1 button
-//        mPlusOneButton = (PlusOneButton) view.findViewById(R.id.plus_one_button);
+//        mPlusOneButton = (PlusOneButton) view.findViewById(R.offerId.plus_one_button);
 
         return view;
     }

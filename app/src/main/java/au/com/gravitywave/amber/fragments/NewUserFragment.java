@@ -93,7 +93,7 @@ public class NewUserFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_new_user, container, false);
         addressTextView = (TextView)v.findViewById(R.id.address);
-        addressEditImageButton = (ImageButton) v.findViewById(R.id.buttonEditAddress);
+        addressEditImageButton = (ImageButton) v.findViewById(R.id.edit_address);
 
         addressTextView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -106,7 +106,7 @@ public class RegisterPersonalDetailsFragment extends Fragment {
         };
 
 
-//        Spinner genderSpinner = (Spinner)v.findViewById(R.id.gender);
+//        Spinner genderSpinner = (Spinner)v.findViewById(R.offerId.gender);
 //        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.gender, R.layout.spinner_layout);
 //        adapter.setDropDownViewResource(R.layout.spinner_layout);
 //        genderSpinner.setAdapter(adapter);

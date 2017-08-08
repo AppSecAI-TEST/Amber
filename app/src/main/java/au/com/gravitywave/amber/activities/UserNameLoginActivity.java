@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -148,7 +149,7 @@ public class UserNameLoginActivity extends AppCompatActivity
     }
 
     /**
-     * Callback received when a permissions request has been completed.
+     * Callback received offerTime a permissions request has been completed.
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -334,6 +335,10 @@ public class UserNameLoginActivity extends AppCompatActivity
     @Override
     public void onAuthSuccess(FingerprintManager.CryptoObject cryptoObject) {
         Toast.makeText(getApplicationContext(), "Success with fingerprint", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(this, ShellActivity.class);
+        startActivity(intent);
+
     }
 
     @Override

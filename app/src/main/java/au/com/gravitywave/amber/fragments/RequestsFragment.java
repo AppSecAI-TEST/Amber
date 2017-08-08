@@ -9,11 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import au.com.gravitywave.amber.AmberApplication;
 import au.com.gravitywave.amber.R;
-import au.com.gravitywave.amber.entities.Person;
+import au.com.gravitywave.amber.entities.Journey;
+//import au.com.gravitywave.amber.fragments.dummy.RequestsContent;
 
 /**
  * A fragment representing a list of Items.
@@ -21,57 +20,43 @@ import au.com.gravitywave.amber.entities.Person;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class PersonListFragment extends Fragment {
+public class RequestsFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    List<Person> people;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public PersonListFragment() {
+    public RequestsFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static PersonListFragment newInstance(int columnCount) {
-        PersonListFragment fragment = new PersonListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
+    public static RequestsFragment newInstance() {
+        RequestsFragment fragment = new RequestsFragment();
+//        Bundle args = new Bundle();
+//        args.putInt(ARG_COLUMN_COUNT, columnCount);
+//        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
-
-        people = AmberApplication.personRepository.GetAll();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_person_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_request_list, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.person_list);
         // Set the adapter
-        if (recyclerView instanceof RecyclerView) {
+        if (view instanceof RecyclerView) {
             Context context = view.getContext();
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new PersonRecyclerViewAdapter(people));
+            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setAdapter(new RequestsRecyclerViewAdapter(AmberApplication.journeyRepository.getCurrentRequests(), mListener, getContext()));
         }
         return view;
     }
@@ -105,7 +90,8 @@ public class PersonListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(Person item);
+        void onListFragmentInteraction(Journey journey);
     }
+
+
 }

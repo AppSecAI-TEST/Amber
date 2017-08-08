@@ -9,8 +9,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import au.com.gravitywave.amber.R;
+import au.com.gravitywave.amber.entities.Person;
 import au.com.gravitywave.amber.fragments.PersonListFragment.OnListFragmentInteractionListener;
-import au.com.gravitywave.amber.fragments.entities.PersonListContent.Person;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Person} and makes a call to the
@@ -38,9 +38,9 @@ public class PersonRecyclerViewAdapter extends RecyclerView.Adapter<PersonRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mPeople.get(position);
-//        holder.mIdView.setText(mPeople.get(position).id);
-        holder.mFirstName.setText(mPeople.get(position).firstName);
-        holder.mLastName.setText(mPeople.get(position).lastName);
+//        holder.mRequesterFirstNameTextView.setText(mPeople.get(position).offerId);
+        holder.mFirstName.setText(mPeople.get(position).getFirstName());
+        holder.mLastName.setText(mPeople.get(position).getLastName());
 
 //        holder.mView.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -61,7 +61,7 @@ public class PersonRecyclerViewAdapter extends RecyclerView.Adapter<PersonRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        //        public final TextView mIdView;
+        //        public final TextView mRequesterFirstNameTextView;
         public final TextView mFirstName;
         public final TextView mLastName;
         public Person mItem;
@@ -69,7 +69,7 @@ public class PersonRecyclerViewAdapter extends RecyclerView.Adapter<PersonRecycl
         public ViewHolder(View view) {
             super(view);
             mView = view;
-//            mIdView = (TextView) view.findViewById(R.id.id);
+//            mRequesterFirstNameTextView = (TextView) view.findViewById(R.offerId.offerId);
             mFirstName = (TextView) view.findViewById(R.id.first_name);
             mLastName = (TextView) view.findViewById(R.id.last_name);
         }

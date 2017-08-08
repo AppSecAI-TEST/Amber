@@ -70,7 +70,9 @@ public class StartUpActivity extends AppCompatActivity
 
     @Override
     public void onAuthSuccess(FingerprintManager.CryptoObject cryptoObject) {
+
         Toast.makeText(getApplicationContext(), "Success with fingerprint", Toast.LENGTH_LONG).show();
+
     }
 
     @Override

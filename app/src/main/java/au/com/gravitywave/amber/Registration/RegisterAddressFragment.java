@@ -96,7 +96,7 @@ public class RegisterAddressFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_register_address, container, false);
 
         addressTextView = (TextView) v.findViewById(R.id.address);
-        addressEditImageButton = (ImageButton) v.findViewById(R.id.buttonEditAddress);
+        addressEditImageButton = (ImageButton) v.findViewById(R.id.edit_address);
 
         addressTextView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,13 +23,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import au.com.gravitywave.amber.R;
+import au.com.gravitywave.amber.entities.Person;
 import au.com.gravitywave.amber.fragments.BlankFragment;
 import au.com.gravitywave.amber.fragments.LocationPickerFragment;
 import au.com.gravitywave.amber.fragments.MonitorFragment;
 import au.com.gravitywave.amber.fragments.NewUserFragment;
 import au.com.gravitywave.amber.fragments.PersonListFragment;
 import au.com.gravitywave.amber.fragments.PersonPickerFragment;
-import au.com.gravitywave.amber.fragments.entities.PersonListContent;
 import au.com.gravitywave.amber.registration.NewRegistrationActivity;
 import au.com.gravitywave.amber.walk.ShowResponderDialogFragment;
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
 
         showMonitorFragment();
 
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar = (Toolbar) findViewById(R.offerId.toolbar);
 //        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(PersonListContent.Person item) {
+    public void onListFragmentInteraction(Person item) {
 
     }
 
@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity
 //    public void showTime() {
 //        String currentTIme = serverMockService.getCurrentTime();
 //
-//        TextView timeTextView = (TextView) findViewById(R.id.currentTime);
+//        TextView timeTextView = (TextView) findViewById(R.offerId.currentTime);
 //        timeTextView.setText(currentTIme);
 //    }
 

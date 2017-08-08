@@ -2,7 +2,6 @@ package au.com.gravitywave.amber.fragments;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.LocationListener;
@@ -12,35 +11,38 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import au.com.gravitywave.amber.AmberApplication;
 import au.com.gravitywave.amber.R;
-import au.com.gravitywave.amber.fragments.entities.PersonListContent;
+import au.com.gravitywave.amber.entities.Journey;
+import au.com.gravitywave.amber.entities.Offer;
+import au.com.gravitywave.amber.entities.Person;
+import butterknife.ButterKnife;
 
-import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,33 +57,29 @@ public class MonitorFragment extends Fragment
         PersonListFragment.OnListFragmentInteractionListener
 
 {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     public static Criteria criteria;
 
 //    ServerMockService serverMockService;
 //    boolean isBound = false;
-Button drawerToggleButton;
 
-    DrawerLayout drawer;
 
-MapView mMapView;
-    TextView timeTextView;
-    TextView mFromEditText;
-    TextView mToEditText;
-    int FROM_PLACE_PICKER_REQUEST = 1 ;
-    int TO_PLACE_PICKER_REQUEST = 2 ;
+//    @BindView(R.id.buttonToggleDrawer)
+//    Button drawerToggleButton;
+//
+//    @BindView(R.id.drawer_layout)
+//    DrawerLayout drawer;
+
+    MapView mMapView;
+
+
+    List<Journey> mRequests;
+
     ArrayList<Marker> mAllMarkers;
     LocationListener locationListener;
     LocationManager locationManager;
+    GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
     private View mRootView;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
 
@@ -95,34 +93,37 @@ MapView mMapView;
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment MonitorFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MonitorFragment newInstance(String param1, String param2) {
+    public static MonitorFragment newInstance() {
         MonitorFragment fragment = new MonitorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mGoogleApiClient.disconnect();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-
-//        Intent i = new Intent(getContext(), ServerMockService.class);
-//        getActivity().bindService(i, serviceConnection, Context.BIND_AUTO_CREATE);
-
+        mGoogleApiClient = new GoogleApiClient
+                .Builder(getActivity())
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .build();
 
     }
 
@@ -132,110 +133,72 @@ MapView mMapView;
 
         mRootView = inflater.inflate(R.layout.fragment_monitor, container, false);
 
-        drawerToggleButton = (Button) mRootView.findViewById(R.id.buttonToggleDrawer);
-        drawer = (DrawerLayout) container.getRootView().findViewById(R.id.drawer_layout);
+        ButterKnife.bind(getActivity());
 
 
-        drawerToggleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.openDrawer(Gravity.LEFT);
-            }
-        });
+        ShowRequests();
 
-        handleFromClick(mRootView);
-        handleToClick(mRootView);
+
+//        drawerToggleButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                drawer.openDrawer(Gravity.LEFT);
+//            }
+//        });
 
 
         return mRootView;
     }
 
+    private void ShowRequests() {
+
+        mRequests = AmberApplication.journeyRepository.getCurrentRequests();
+
+        //loop through journeys
+        //add (green) marker for each
+        for (final Journey j : mRequests) {
+            Places.GeoDataApi.getPlaceById(mGoogleApiClient, j.getStartPlaceId())
+                    .setResultCallback(new ResultCallback<PlaceBuffer>() {
+                        @Override
+                        public void onResult(PlaceBuffer places) {
+                            if (places.getStatus().isSuccess() && places.getCount() > 0) {
+                                final Place place = places.get(0);
+                                Log.i(TAG, "Place found: " + place.getName());
+
+                                Offer offer = AmberApplication.offerRepository.getOfferById(AmberApplication.currentPerson.getPersonId());
+
+                                String status = offer == null ? "request" : "offered";
+
+                                if (offer != null)
+
+                                    MonitorFragment.this.addMarker(
+                                            place,
+                                            AmberApplication.personRepository.GetById(j.getRequestorId()).getFirstName(),
+                                            status);
 
 
-    private void handleFromClick(View view) {
-        mFromEditText = (EditText)view.findViewById(R.id.from_location);
-        mFromEditText.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-
-                Intent intent = null;
-                try {
-                    intent = builder.build(getActivity());
-                } catch (GooglePlayServicesRepairableException e) {
-                    e.printStackTrace();
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
-                }
-                startActivityForResult(intent, FROM_PLACE_PICKER_REQUEST);
-
-            }
-        });
-    }
-
-    private void handleToClick(View view) {
-        mToEditText = (EditText)view.findViewById(R.id.to_location);
-        mToEditText.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                Intent intent = null;
-                try {
-                    intent = builder.build(getActivity());
-                } catch (GooglePlayServicesRepairableException e) {
-                    e.printStackTrace();
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
-                }
-                startActivityForResult(intent, TO_PLACE_PICKER_REQUEST);
-
-            }
-        });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == FROM_PLACE_PICKER_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlacePicker.getPlace(getContext(),data);
-                String address = String.format("from: %s, ", place.getName());
-
-                addMarker(place,"from");
-                mFromEditText.setText(address);
-            }
+                            } else {
+                                Log.e(TAG, "Place not found");
+                            }
+                            places.release();
+                        }
+                    });
         }
-        if (requestCode == TO_PLACE_PICKER_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlacePicker.getPlace(getContext(),data);
-                String address = String.format("to: %s, ", place.getName());
 
-                addMarker(place,"to");
-                mToEditText.setText(address);
-            }
-        }
     }
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-//        PersonListFragment personListFragment = new PersonListFragment();
-//        fragmentTransaction.replace(R.id.bottom_sheet, personListFragment);
-//        fragmentTransaction.addToBackStack(null);
-//        fragmentTransaction.commit();
-
         mMapView = (MapView) view.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume();
-        mMapView.getMapAsync(this);//when you already implement OnMapReadyCallback in your fragment
+        mMapView.getMapAsync(this);//offerTime you already implement OnMapReadyCallback in your fragment
 
 
-        //timeTextView = (TextView) view.findViewById(R.id.currentTime);
+        //timeTextView = (TextView) view.findViewById(R.offerId.currentTime);
     }
 
 
@@ -298,16 +261,39 @@ MapView mMapView;
         addCurrentLocationMarker(googleMap);
     }
 
-    private void addMarker(Place place, String name){
-        Marker marker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(name));
+    private void addMarker(Place place, String name, String type) {
+
+
+        MarkerOptions options;
+
+        switch (type) {
+            case "offered":
+                options = new MarkerOptions()
+                        .position(place.getLatLng())
+                        .title(name)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                break;
+            case "request":
+                options = new MarkerOptions()
+                        .position(place.getLatLng())
+                        .title(name)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                break;
+            default:
+                options = new MarkerOptions()
+                        .position(place.getLatLng())
+                        .title(name);
+                break;
+
+        }
+
+        Marker marker = mMap.addMarker(options);
+
         mAllMarkers.add(marker);
         ZoomAllMarkers();
     }
 
     private void addCurrentLocationMarker(GoogleMap googleMap) {
-
-
-
         mMap = googleMap;
 
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
@@ -354,7 +340,7 @@ MapView mMapView;
     }
 
     @Override
-    public void onListFragmentInteraction(PersonListContent.Person item) {
+    public void onListFragmentInteraction(Person item) {
 
     }
 
@@ -372,28 +358,5 @@ MapView mMapView;
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
-
-//    private ServiceConnection serviceConnection = new ServiceConnection() {
-//        @Override
-//        public void onServiceConnected(ComponentName name, IBinder service) {
-//            ServerMockService.ServiceMockBinder binder = (ServerMockService.ServiceMockBinder)service;
-//            serverMockService = binder.getService();
-//            isBound = true;
-//            showTime();
-//        }
-//
-//        @Override
-//        public void onServiceDisconnected(ComponentName name) {
-//            isBound = false;
-//        }
-//    };
-
-//    public void showTime() {
-//        String currentTIme = serverMockService.getCurrentTime();
-//
-//
-//        timeTextView.setText(currentTIme);
-//    }
 
 }
