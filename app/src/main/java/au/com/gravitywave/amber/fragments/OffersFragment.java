@@ -19,11 +19,11 @@ import au.com.gravitywave.amber.entities.Offer;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class MyOffersFragment extends Fragment {
+public class OffersFragment extends Fragment {
 
-    private static final String ARG_PERSON_ID = "person_id";
+    private static final String ARG_JOURNEY_ID = "journey_id";
 
-    private int mPersonId;
+    private int mJourneyId;
 
     private OnListFragmentInteractionListener mListener;
 
@@ -31,15 +31,15 @@ public class MyOffersFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public MyOffersFragment() {
+    public OffersFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static MyOffersFragment newInstance(int personId) {
-        MyOffersFragment fragment = new MyOffersFragment();
+    public static OffersFragment newInstance(int journeyId) {
+        OffersFragment fragment = new OffersFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PERSON_ID, personId);
+        args.putInt(ARG_JOURNEY_ID, journeyId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,7 +49,7 @@ public class MyOffersFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mPersonId = getArguments().getInt(ARG_PERSON_ID);
+            mJourneyId = getArguments().getInt(ARG_JOURNEY_ID);
         }
     }
 
@@ -64,8 +64,8 @@ public class MyOffersFragment extends Fragment {
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(
-                    new MyOfferRecyclerViewAdapter(
-                            AmberApplication.offerRepository.getOffersFromPerson(mPersonId)
+                    new OffersRecyclerViewAdapter(
+                            AmberApplication.offerRepository.getOffersForJourney(mJourneyId)
                             , mListener
                             , getActivity()));
         }

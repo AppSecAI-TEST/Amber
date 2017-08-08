@@ -174,9 +174,10 @@ public class MyRequestFragment
 
     public void showTimePickerDialog(View v) {
 
-        Calendar mcurrentTime = Calendar.getInstance();
-        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mcurrentTime.get(Calendar.MINUTE);
+        //// TODO: 8/08/2017 get the time from creation
+        Calendar currentTime = Calendar.getInstance();
+        int hour = currentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = currentTime.get(Calendar.MINUTE);
 
         TimePickerDialog mTimePicker;
 

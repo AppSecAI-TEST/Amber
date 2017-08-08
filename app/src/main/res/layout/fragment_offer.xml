@@ -22,34 +22,6 @@
                 android:textAppearance="?attr/titleTextAppearance" />
 
             <TextView
-                android:id="@+id/from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
-
-            <TextView
-                android:id="@+id/distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
-
-            <TextView
-                android:id="@+id/when"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
-
-            <TextView
-                android:id="@+id/message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItemSmall" />
-
-            <TextView
                 android:id="@+id/offer_when"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

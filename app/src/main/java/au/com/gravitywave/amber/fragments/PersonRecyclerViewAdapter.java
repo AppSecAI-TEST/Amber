@@ -38,7 +38,7 @@ public class PersonRecyclerViewAdapter extends RecyclerView.Adapter<PersonRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mPeople.get(position);
-//        holder.mRequesterFirstNameTextView.setText(mPeople.get(position).offerId);
+//        holder.mOffererFirstNameTextView.setText(mPeople.get(position).offerId);
         holder.mFirstName.setText(mPeople.get(position).getFirstName());
         holder.mLastName.setText(mPeople.get(position).getLastName());
 
@@ -61,7 +61,7 @@ public class PersonRecyclerViewAdapter extends RecyclerView.Adapter<PersonRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        //        public final TextView mRequesterFirstNameTextView;
+        //        public final TextView mOffererFirstNameTextView;
         public final TextView mFirstName;
         public final TextView mLastName;
         public Person mItem;
@@ -69,7 +69,7 @@ public class PersonRecyclerViewAdapter extends RecyclerView.Adapter<PersonRecycl
         public ViewHolder(View view) {
             super(view);
             mView = view;
-//            mRequesterFirstNameTextView = (TextView) view.findViewById(R.offerId.offerId);
+//            mOffererFirstNameTextView = (TextView) view.findViewById(R.offerId.offerId);
             mFirstName = (TextView) view.findViewById(R.id.first_name);
             mLastName = (TextView) view.findViewById(R.id.last_name);
         }

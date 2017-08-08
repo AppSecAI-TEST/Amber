@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="au.com.gravitywave.amber.fragments.MyOffersFragment"
+    tools:context="au.com.gravitywave.amber.fragments.OffersFragment"
     tools:listitem="@layout/fragment_offer" />

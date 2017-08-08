@@ -20,8 +20,8 @@ import au.com.gravitywave.amber.R;
 import au.com.gravitywave.amber.entities.Journey;
 import au.com.gravitywave.amber.entities.Offer;
 import au.com.gravitywave.amber.fragments.MonitorFragment;
-import au.com.gravitywave.amber.fragments.MyOffersFragment;
 import au.com.gravitywave.amber.fragments.MyRequestFragment;
+import au.com.gravitywave.amber.fragments.OffersFragment;
 import au.com.gravitywave.amber.fragments.RequestsFragment;
 import au.com.gravitywave.amber.fragments.ViewRequestFragment;
 import butterknife.BindView;
@@ -66,7 +66,7 @@ public class ShellActivity extends AppCompatActivity
                     break;
                 case R.id.navigation_my_offers:
                     mTextMessage.setText(R.string.title_my_offers);
-                    fragment = MyOffersFragment.newInstance(AmberApplication.currentPerson.getPersonId());
+                    fragment = OffersFragment.newInstance(AmberApplication.currentPerson.getPersonId());
                     break;
                 case R.id.navigation_my_request:
                     fragment = MyRequestFragment.newInstance();
