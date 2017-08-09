@@ -48,7 +48,9 @@ public class ViewRequestFragment
         implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final String ARG_REQUEST_ID = "request_id";
+
     GoogleApiClient mGoogleApiClient;
+
     @BindView(R.id.first_name)
     TextView mFirstNameTextView;
     @BindView(R.id.from)
@@ -67,6 +69,7 @@ public class ViewRequestFragment
     EditText mProposedTimeTextView;
     @BindView(R.id.message_to_requester)
     TextView mMessageToRequesterTextView;
+
     private int mRequestId;
     private OnFragmentInteractionListener mListener;
     private ViewRequestDialogListener mViewRequestDialogListener;

@@ -23,6 +23,7 @@ import au.com.gravitywave.amber.fragments.MonitorFragment;
 import au.com.gravitywave.amber.fragments.MyRequestFragment;
 import au.com.gravitywave.amber.fragments.OffersFragment;
 import au.com.gravitywave.amber.fragments.RequestsFragment;
+import au.com.gravitywave.amber.fragments.ViewOfferFragment;
 import au.com.gravitywave.amber.fragments.ViewRequestFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +33,9 @@ public class ShellActivity extends AppCompatActivity
         ViewRequestFragment.OnFragmentInteractionListener,
         ViewRequestFragment.ViewRequestDialogListener,
         MonitorFragment.OnFragmentInteractionListener,
-        MyRequestFragment.OnFragmentInteractionListener
+        MyRequestFragment.OnFragmentInteractionListener,
+        ViewOfferFragment.OnFragmentInteractionListener,
+        ViewOfferFragment.ViewRequestDialogListener
 
 {
 
@@ -174,5 +177,10 @@ public class ShellActivity extends AppCompatActivity
                 .replace(R.id.container, fragment)
                 .commit();
 
+    }
+
+    @Override
+    public void onAcceptOffer(Calendar when, String message, int offerId, int offererId) {
+        // TODO: 09/08/2017 go to Waiting Mode
     }
 }

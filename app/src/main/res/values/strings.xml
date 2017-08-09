@@ -179,5 +179,6 @@
     <string name="plus_15">+15min</string>
     <string name="minus_15">-15min</string>
     <string name="message">Message</string>
+    <string name="accept">Accept</string>
 
 </resources>
