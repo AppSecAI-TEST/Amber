@@ -20,18 +20,37 @@ public class MessageRepository {
     private List<Message> messages;
 
 
+    private MessageRepository() {
+        messages = new ArrayList<>();
+
+        messages.add(new Message(nextMessageId++, 1, 1, 2, "message from 1", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 1, 2, "message from 1", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 1, 2, "message from 1", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+    }
+
     public static MessageRepository getInstance() {
         return ourInstance;
     }
 
-    private MessageRepository() {
-        messages = new ArrayList<>();
+    public List<Message> getJourneyConversation(int journeyId) {
+        List<Message> messages = new ArrayList<>();
+        for (Message m : messages) {
+            if (m.getmJourneyId() == journeyId) {
+                messages.add(m);
+            }
+        }
 
-        messages.add(new Message(nextMessageId++, 1,2,"message from 1", Calendar.getInstance().getTime()));
-        messages.add(new Message(nextMessageId++, 1,2,"message from 1", Calendar.getInstance().getTime()));
-        messages.add(new Message(nextMessageId++, 2,1,"message from 2", Calendar.getInstance().getTime()));
-        messages.add(new Message(nextMessageId++, 1,2,"message from 1", Calendar.getInstance().getTime()));
-        messages.add(new Message(nextMessageId++, 2,1,"message from 2", Calendar.getInstance().getTime()));
+        Collections.sort(messages, new Comparator<Message>() {
+            @Override
+            public int compare(Message lhs, Message rhs) {
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                return lhs.getSendTime().compareTo(rhs.getSendTime());
+            }
+        });
+
+        return messages;
     }
 
     public List<Message> getConversation(int person1, int person2) {

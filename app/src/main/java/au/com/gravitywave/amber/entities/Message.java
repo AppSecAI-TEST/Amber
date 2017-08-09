@@ -1,6 +1,5 @@
 package au.com.gravitywave.amber.entities;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -9,6 +8,8 @@ import java.util.Date;
 
 public class Message extends EntityBase {
 
+
+    private int mJourneyId;
     private int mMessageId;
     private int mFromPersonId;
     private int mToPersonId;
@@ -16,8 +17,9 @@ public class Message extends EntityBase {
 
     private String mMessage;
 
-    public Message(int mMessageId, int mFromPersonId, int mToPersonId, String message, Date mSendTime) {
+    public Message(int mMessageId, int journeyId, int mFromPersonId, int mToPersonId, String message, Date mSendTime) {
         this.mMessageId = mMessageId;
+        this.mJourneyId = journeyId;
         this.mFromPersonId = mFromPersonId;
         this.mToPersonId = mToPersonId;
         this.mMessage = message;
@@ -30,6 +32,14 @@ public class Message extends EntityBase {
 
     public void setMessageId(int messageId) {
         this.mMessageId = messageId;
+    }
+
+    public int getmJourneyId() {
+        return mJourneyId;
+    }
+
+    public void setmJourneyId(int mJourneyId) {
+        this.mJourneyId = mJourneyId;
     }
 
     public int getFromPersonId() {
