@@ -28,6 +28,15 @@ public class MessageRepository {
         messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
         messages.add(new Message(nextMessageId++, 1, 1, 2, "message from 1", Calendar.getInstance().getTime()));
         messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
+        messages.add(new Message(nextMessageId++, 1, 2, 1, "message from 2", Calendar.getInstance().getTime()));
     }
 
     public static MessageRepository getInstance() {
@@ -35,14 +44,14 @@ public class MessageRepository {
     }
 
     public List<Message> getJourneyConversation(int journeyId) {
-        List<Message> messages = new ArrayList<>();
+        List<Message> filtered = new ArrayList<>();
         for (Message m : messages) {
             if (m.getmJourneyId() == journeyId) {
-                messages.add(m);
+                filtered.add(m);
             }
         }
 
-        Collections.sort(messages, new Comparator<Message>() {
+        Collections.sort(filtered, new Comparator<Message>() {
             @Override
             public int compare(Message lhs, Message rhs) {
                 // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
@@ -50,7 +59,7 @@ public class MessageRepository {
             }
         });
 
-        return messages;
+        return filtered;
     }
 
     public List<Message> getConversation(int person1, int person2) {

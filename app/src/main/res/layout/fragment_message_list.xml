@@ -10,4 +10,4 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="au.com.gravitywave.amber.fragments.MessagesFragment"
-    tools:listitem="@layout/fragment_message" />
+    tools:listitem="@layout/message_left_row" />

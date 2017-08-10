@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import au.com.gravitywave.amber.R;
 import au.com.gravitywave.amber.entities.Message;
 import au.com.gravitywave.amber.fragments.MessagesFragment.OnListFragmentInteractionListener;
 import au.com.gravitywave.amber.fragments.dummy.DummyContent.DummyItem;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
@@ -43,8 +43,7 @@ public class MessageListRecyclerViewAdapter extends RecyclerView.Adapter<Message
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.message_left_row, parent, false);
             return new ViewHolder(view);
-        }
-        else {
+        } else {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.message_right_row, parent, false);
             return new ViewHolder(view);
@@ -57,8 +56,8 @@ public class MessageListRecyclerViewAdapter extends RecyclerView.Adapter<Message
 
         if (message.getFromPersonId() == mPersonID)
             return MESSAGE_FOR_PERSON;
-            else
-                return MESSAGE_FOR_OTHER_PERSON;
+        else
+            return MESSAGE_FOR_OTHER_PERSON;
     }
 
     @Override
@@ -67,8 +66,8 @@ public class MessageListRecyclerViewAdapter extends RecyclerView.Adapter<Message
 
         View view = holder.mView;
 
-        TextView mMesssageTextView = (TextView) view.findViewById(R.id.message);
-        mMesssageTextView.setText(holder.mItem.getMessage());
+        TextView mMessageTextView = (TextView) view.findViewById(R.id.message);
+        mMessageTextView.setText(holder.mItem.getMessage());
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         TextView mWhenTextView = (TextView) view.findViewById(R.id.when);

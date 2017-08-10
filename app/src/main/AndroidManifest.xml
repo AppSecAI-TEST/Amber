@@ -99,17 +99,18 @@
         <activity
             android:name=".registration.RegisterActivity"
             android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activities.WaitingActivity"
+            android:label="@string/title_activity_waiting"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".activities.WaitingActivity"
-            android:label="@string/title_activity_waiting"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

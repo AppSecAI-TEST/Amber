@@ -10,19 +10,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-
 import au.com.gravitywave.amber.AmberApplication;
 import au.com.gravitywave.amber.R;
 import au.com.gravitywave.amber.entities.Journey;
-import au.com.gravitywave.amber.fragments.MonitorFragment;
+import au.com.gravitywave.amber.entities.Message;
+import au.com.gravitywave.amber.fragments.MessagesFragment;
 
-public class WaitingActivity extends AppCompatActivity {
+public class WaitingActivity
+        extends AppCompatActivity
+        implements MessagesFragment.OnListFragmentInteractionListener {
 
     private static final String ARG_JOURNEY_ID = "journey_id";
-    private static final String ARG_PERSON_ID = "persone_id";
+    private static final String ARG_PERSON_ID = "person_id";
 
     Journey mJourney;
+
     TextView mFromTextView;
     TextView mToTextView;
     TextView mWhenTextView;
@@ -40,21 +42,24 @@ public class WaitingActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
 
-        mJourneyId= extras.getInt(ARG_JOURNEY_ID);
-        mPersonId= extras.getInt(ARG_PERSON_ID);
+//        mJourneyId= extras.getInt(ARG_JOURNEY_ID);
+//        mPersonId= extras.getInt(ARG_PERSON_ID);
+
+        mJourneyId = 1;
+        mPersonId = 1;
 
         mJourney = AmberApplication.journeyRepository.getJourneyById(mJourneyId);
 
-        mFromTextView.setText(mJourney.getStartPlaceId()); // TODO: 10/08/2017 get place name
-        mToTextView.setText(mJourney.getDestinationPlaceId()); // TODO: 10/08/2017 get place name
+//        mFromTextView.setText(mJourney.getStartPlaceId()); // TODO: 10/08/2017 get place name
+//        mToTextView.setText(mJourney.getDestinationPlaceId()); // TODO: 10/08/2017 get place name
+//
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+//        mWhenTextView.setText(simpleDateFormat.format(mJourney.getStartTime()));
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-        mWhenTextView.setText(simpleDateFormat.format(mJourney.getStartTime()));
-
-        Fragment fragment = WaitingActivityFragment.newInstance(mJourneyId, mPersonId);
+        Fragment fragment = MessagesFragment.newInstance(mJourneyId, mPersonId);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, fragment)
+                .replace(R.id.content, fragment)
                 .commit();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -67,4 +72,8 @@ public class WaitingActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onListFragmentInteraction(Message item) {
+
+    }
 }

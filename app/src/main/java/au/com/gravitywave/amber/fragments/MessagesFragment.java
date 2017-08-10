@@ -25,13 +25,10 @@ public class MessagesFragment extends Fragment {
 
     private static final String ARG_JOURNEY_ID = "journey_id";
     private static final String ARG_PERSON_ID = "persone_id";
-
+    List<Message> messages;
     private OnListFragmentInteractionListener mListener;
-
     private int mJourneyId;
     private int mPersonId;
-
-    List<Message> messages;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -42,10 +39,11 @@ public class MessagesFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static MessagesFragment newInstance(int columnCount) {
+    public static MessagesFragment newInstance(int journeyId, int mPersonId) {
         MessagesFragment fragment = new MessagesFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_JOURNEY_ID, columnCount);
+        args.putInt(ARG_JOURNEY_ID, journeyId);
+        args.putInt(ARG_PERSON_ID, mPersonId);
         fragment.setArguments(args);
         return fragment;
     }
