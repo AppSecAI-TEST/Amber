@@ -180,5 +180,6 @@
     <string name="minus_15">-15min</string>
     <string name="message">Message</string>
     <string name="accept">Accept</string>
+    <string name="title_activity_waiting">WaitingActivity</string>
 
 </resources>
