@@ -8,13 +8,19 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 
 import au.com.gravitywave.amber.AmberApplication;
 import au.com.gravitywave.amber.R;
 import au.com.gravitywave.amber.entities.Journey;
 import au.com.gravitywave.amber.entities.Message;
+import au.com.gravitywave.amber.entities.Offer;
+import au.com.gravitywave.amber.entities.Person;
 import au.com.gravitywave.amber.fragments.MessagesFragment;
+import butterknife.BindView;
 
 public class WaitingActivity
         extends AppCompatActivity
@@ -25,12 +31,18 @@ public class WaitingActivity
 
     Journey mJourney;
 
+
+    @BindView(R.id.offerer_first_name)
     TextView mFromTextView;
-    TextView mToTextView;
+
+    @BindView(R.id.offerer_when)
     TextView mWhenTextView;
+
+
 
     private int mJourneyId;
     private int mPersonId;
+    private int mOfferId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +59,16 @@ public class WaitingActivity
 
         mJourneyId = 1;
         mPersonId = 1;
+        mOfferId = 1;
 
         mJourney = AmberApplication.journeyRepository.getJourneyById(mJourneyId);
+        Person offerer = AmberApplication.personRepository.GetById(mPersonId);
+        Offer acceptedOffer = AmberApplication.offerRepository.getOfferById(mOfferId);
 
-//        mFromTextView.setText(mJourney.getStartPlaceId()); // TODO: 10/08/2017 get place name
-//        mToTextView.setText(mJourney.getDestinationPlaceId()); // TODO: 10/08/2017 get place name
+        mFromTextView.setText(offerer.getFirstName());
 //
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-//        mWhenTextView.setText(simpleDateFormat.format(mJourney.getStartTime()));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+        mWhenTextView.setText(simpleDateFormat.format(acceptedOffer.getOfferTime()));
 
         Fragment fragment = MessagesFragment.newInstance(mJourneyId, mPersonId);
         getSupportFragmentManager()

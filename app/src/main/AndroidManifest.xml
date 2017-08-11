@@ -99,7 +99,7 @@
         <activity
             android:name=".registration.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.WaitingActivity"
             android:label="@string/title_activity_waiting"
@@ -109,8 +109,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity
+            android:name=".activities.OnWalkActivity"
+            android:label="@string/title_activity_on_walk"></activity>
     </application>
 
 </manifest>

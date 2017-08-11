@@ -181,5 +181,6 @@
     <string name="message">Message</string>
     <string name="accept">Accept</string>
     <string name="title_activity_waiting">WaitingActivity</string>
+    <string name="title_activity_on_walk">Map</string>
 
 </resources>
